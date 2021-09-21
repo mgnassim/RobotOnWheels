@@ -18,5 +18,5 @@ This is the ROW project of IT201-Team 3
 
 - Aghead Bilal
 - Bilal Malik
-- Joris Brouwer
+- Joris Brouwer (da best programmer)
 - Nassim Mengat
