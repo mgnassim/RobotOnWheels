@@ -8,7 +8,7 @@
 #include <wiringPi.h>
 #include <wiringPiI2C.h>
 int fd;
-fd =wiringPiI2CSetup (0x31) ;
+fd =wiringPiI2CSetup (0x32) ;
 uint8_t  arr[7] = {7,3,0xA5,1,3,0xA5,2};
 write(fd,&arr[0],7);
 
