@@ -17,35 +17,45 @@ int main(){
 
 	while(1){
 	   	
-		char ch;
+		char ch = 0;
 		ch = getch();
-		switch(ch){
+		char *p = &ch;
 
-		case 'w':
-			printf("W HAS CLICKED\n");
-			goForwards(fd);
-			break;
+		if(p != NULL){
+			switch(ch) {
+		
+			case 'w':
+				printf("W HAS CLICKED\n");
+				goForwards(fd);
+				ch = 0;
+				break;
 
-		case 's':
-			printf("S HAS CLICKED\n");
-			goBackwards(fd);
-			break;
+			case 's':
+				printf("S HAS CLICKED\n");
+				goBackwards(fd);
+				ch = 0;
+				break;
 
-		case 'a':
-			printf("A HAS CLICKED\n");
-			goLeft(fd);
-			break;
+			case 'a':
+				printf("A HAS CLICKED\n");
+				goLeft(fd);
+				ch = 0;
+				break;
 
-		case 'd':
-			printf("D HAS CLICKED\n");
-			goRight(fd);
-			break;
+			case 'd':
+				printf("D HAS CLICKED\n");
+				goRight(fd);
+				ch = 0;
+				break;
 
-		default:
-			printf("HIJ IS GESTOPT\n");
-			stop(fd);
-			break;
+			default:
+				printf("HIJ IS GESTOPT\n");
+				stop(fd);
+				break;
+			}
 		}
+		else
+			stop(fd);
 	}
 	return 0;
 }
