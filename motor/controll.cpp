@@ -24,22 +24,22 @@ int main(){
 			switch(ch) {
 
 			case 'w':
-				printf("W HAS CLICKED\n");
+				printf("de robot gaat naar vooren\n");
 				goForwards(fd);
 				break;
 
 			case 's':
-				printf("S HAS CLICKED\n");
+				printf("de robot gaat naar achteren\n");
 				goBackwards(fd);
 				break;
 
 			case 'a':
-				printf("A HAS CLICKED\n");
+				printf("de robot gaat naar links\n");
 				goLeft(fd);
 				break;
 
 			case 'd':
-				printf("D HAS CLICKED\n");
+				printf("de robot gaat naar rechts\n");
 				goRight(fd);
 				break;
 
