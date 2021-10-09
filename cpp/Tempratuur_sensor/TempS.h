@@ -1,14 +1,11 @@
 //
 // Created by bilal on 6-10-2021.
 //
+#include <fstream>//ifstream in c++ is a stream class which stands for input file stream.This is used for reading data from file.
+#include <string>
+#define KY001_Signal_PIN 4
 
-#ifndef PROJECT_ROW_TempS_H
-#define PROJECT_ROW_TempS_H
-#include <stdio.h>
-#include <wiringPi.h>
+path_to_sensor = "/sys/bus/w1/devices/28-01205434fbd3/w1_slave"
 
-#endif //PROJECT_ROW_TempS_H
-
-const int pin = 4;
-int readValue;
-double toCelcius(int value);
+void read_temp_raw();
+void read_temp();
