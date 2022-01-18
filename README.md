@@ -1,11 +1,19 @@
 # IT201/2-3(Fire Brigade)
 
 ## About this project
-For this project we were tasked to program a NAO robot to have
-a helping function at the 'Amstelhuis' in Amsterdam. We decided
-to create a bingo game with the robot, so the elderly can have some
-classic fun together. We achieved this by using the various
-APIs documented on the developer guide from Softbank Robotics themselves(https://developer.softbankrobotics.com/nao6/naoqi-developer-guide).
+For this project we had to come with an idea for a rescue car.
+We came up with an firebrigade rover remotly controlled with an app.
+Our rover has the following functions:<br>
+-Orientation (magnetometer)<br>
+-Critical temperature warning (temperature sensor)<br>
+-Low/high water level <br>
+-Water Pump<br>
+-Movement water hose (servo)<br>
+-Siren (speaker/light)
+-Speed in m/s (wheel encoder)
+-Control application (Java)
+
+
 
 ## Before starting
 Make sure you understand the NAO6 API documentation before modifying this repository. It is also recommended you know how to
