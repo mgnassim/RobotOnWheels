@@ -28,9 +28,15 @@ Enter the command sudo raspi-config on your raspberryPi and go to interface opti
 
 For the use of this code the following external libraries are needed on the raspberryPi:
 - wiringPi
-    ~sudo apt-get install wiringPi.
+    ~ sudo apt-get install wiringPi
 - OpenCV
-    ~ https://solarianprogrammer.com/2019/09/17/install-opencv-raspberry-pi-raspbian-cpp-python-development/ .
+    ~ https://solarianprogrammer.com/2019/09/17/install-opencv-raspberry-pi-raspbian-cpp-python-development/
+- pigpio    
+    ~ https://abyz.me.uk/rpi/pigpio/download.html
+- fmod
+    ~ https://wiki.debian.org/FMOD
+-     
+
 
 To download the application install AndroidStudio and open the Java app file from this directory. 
 
