@@ -16,8 +16,7 @@ Our rover has the following functions:
 
 
 ## Before starting
-Make sure you understand the NAO6 API documentation before modifying this repository. It is also recommended you know how to
-write valid Java code.
+Before starting with this product make shure you have an android device available for the application. the application was designed for a screen ratio of 3040 x 1440 pixels in landscape mode. If you use a smaller/bigger screen, the layout may not be optimal.
 
 ## Installation
 For the use of this code the following external libraries are needed:
