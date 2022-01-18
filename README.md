@@ -3,15 +3,15 @@
 ## About this project
 For this project we had to come with an idea for a rescue car.
 We came up with an firebrigade rover remotly controlled with an app.
-Our rover has the following functions:<br>
--Orientation (magnetometer)<br>
--Critical temperature warning (temperature sensor)<br>
--Low/high water level <br>
--Water Pump<br>
--Movement water hose (servo)<br>
--Siren (speaker/light)
--Speed in m/s (wheel encoder)
--Control application (Java)
+Our rover has the following functions:
+- Orientation (magnetometer)
+- Critical temperature warning (temperature sensor)
+- Low/high water level
+- Water Pump
+- Movement water hose (servo)
+- Siren (speaker/light)
+- Speed in m/s (wheel encoder)
+- Control application (Java)
 
 
 
