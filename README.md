@@ -20,20 +20,22 @@ Before starting with this product make shure you have an android device availabl
 
 ## Installation
 
-first make shure your system is up-to-date by using the following commands:
+First make shure your system is up-to-date by using the following commands:
 sudo apt-get update
 sudo apt-get upgrade
 
-For the use of this code the following external libraries are needed:
+Enter the command sudo raspi-config on your raspberryPi and go to interface options. Now enable SPI, I2C and Camera. Now reboot.
+
+For the use of this code the following external libraries are needed on the raspberryPi:
 - wiringPi
-sudo apt-get install wiringPi
-- 
-- 
+    sudo apt-get install wiringPi
+- OpenCV
+    https://solarianprogrammer.com/2019/09/17/install-opencv-raspberry-pi-raspbian-cpp-python-development/
 
+To download the application install AndroidStudio and open the Java app file from this directory. 
 
+## How to use
 
-
-## How to play
 
 ## Important Information
 
