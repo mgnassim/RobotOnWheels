@@ -100,8 +100,8 @@ When this comparison is true, the robot grants you the win and should say: Congr
     This is the most safe way to recognize a valid winner and overload of data to the robot. 
 
 ## Contact information
-Joris Brouwer: joris.brouwer2@hva.nl
-Aghead Bilal: aghead.bilal@hva.nl
-Bilal Malik: bilal.malik2@hva.nl
-Nassim Mengat: nassim.mengat@hva.nl
+Joris Brouwer: joris.brouwer2@hva.nl<br>
+Aghead Bilal: aghead.bilal@hva.nl<br>
+Bilal Malik: bilal.malik2@hva.nl<br>
+Nassim Mengat: nassim.mengat@hva.nl<br>
 Stefano Igbinosun: stefano.igbinosun@hva.nl
