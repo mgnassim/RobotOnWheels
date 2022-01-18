@@ -30,7 +30,7 @@ For the use of this code the following external libraries are needed on the rasp
 - wiringPi<br>
      sudo apt-get install wiringPi <br>
 - OpenCV<br>
-    ~https://solarianprogrammer.com/2019/09/17/install-opencv-raspberry-pi-raspbian-cpp-python-development/ ~
+    https://solarianprogrammer.com/2019/09/17/install-opencv-raspberry-pi-raspbian-cpp-python-development/
 - pigpio <br>   
      https://abyz.me.uk/rpi/pigpio/download.html <br>
 - fmod<br>
