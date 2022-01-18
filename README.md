@@ -34,8 +34,7 @@ For the use of this code the following external libraries are needed on the rasp
 - pigpio    
     ~ https://abyz.me.uk/rpi/pigpio/download.html ~
 - fmod
-    ~ https://wiki.debian.org/FMOD ~
--     
+    ~ https://wiki.debian.org/FMOD ~    
 
 
 To download the application install AndroidStudio and open the Java app file from this directory. 
