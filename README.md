@@ -41,7 +41,8 @@ To download the application install AndroidStudio and open the Java app file fro
 
 ## Code explanation
 -  Low/high water level is responsible for the measuring of the water level in the tank. Base on the level of water it gives a high or low waterlevel. The code is written in C. File https://gitlab.fdmci.hva.nl/balalib/project-row/-/blob/WaterPomp/Water_pomp/water_level_sensor.c contains the code of water level before running this code the Installation process must be done first. The libary that is needed is wiringPi. 
-
+-  Water Pump is an essential part of the concept it make sure to pump the water out of the tank. The Code is pretty simple with a switch case on command you can turn the pump on/off. File https://gitlab.fdmci.hva.nl/balalib/project-row/-/blob/WaterPomp/Water_pomp/waterPomp.c contains the code and is written in C. The libary that is needed is wiringPi. 
+- wheel encoder measure the speed of the rover itself. In the code there are uses of interupts to make sure that after every second a caculation takes place for the speed. The caculation gives back the value in RPM. File https://gitlab.fdmci.hva.nl/balalib/project-row/-/blob/Wheel-encoder/Wheel_encoder/speedo.c contains the code and is written in C. The libary that is needed is wiringPi. 
 
 ## How to use
 
