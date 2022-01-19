@@ -55,6 +55,11 @@ This code is intended to get an orientation(compass) of the rover.
 -  Water Pump is an essential part of the concept it make sure to pump the water out of the tank. The Code is pretty simple with a switch case on command you can turn the pump on/off. File https://gitlab.fdmci.hva.nl/balalib/project-row/-/blob/WaterPomp/Water_pomp/waterPomp.c contains the code and is written in C. The libary that is needed is wiringPi. 
 - wheel encoder measure the speed of the rover itself. In the code there are uses of interupts to make sure that after every second a caculation takes place for the speed. The caculation gives back the value in RPM. File https://gitlab.fdmci.hva.nl/balalib/project-row/-/blob/Wheel-encoder/Wheel_encoder/speedo.c contains the code and is written in C. The libary that is needed is wiringPi. 
 
+- In map distance sensor you can find the code for the distance sensor that is responsible for measureing the distance between the car and the object. The hardware component.
+- In map siren you can find the code for the siren. The siren is responsible for the sound and light. when the siren turns on the led starts to blink and an audio files starts playing the siren. you need the following for compiling the sensor : g++ -Wall  **name file**  -o **name code** -lwiringPi -I/usr/local/include -L/usr/local/lib -lfmod -pthread
+
+-In map servo you can find the code fore the servo. You need the following for compiling g++ -Wall -pthread -o **name file** servo3.cpp -lpigpio -lrt
+
 ## How to use
 To use the firebrigade rover you only need the rover and a mobile android phone. The mobile android phone needs to release a mobile hotspot to which the raspberry pi of the rover needs to connect to. It should connect to your phone automatically once you turn the rover on (presuming you have had a previous connection with the raspberry pi.). To learn how to setup a mobile hotspot in combination with the pi we refer to this article that explains it step by step: https://medium.com/geekculture/how-to-connect-to-the-raspberry-pi-using-mobile-hotspot-2362a6b02efc.
 
