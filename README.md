@@ -40,22 +40,15 @@ For the use of this code the following external libraries are needed on the rasp
 To download the application install AndroidStudio and open the Java app file from this directory. 
 
 ## Code explanation
-
-- In map OpenCV there are some cpp files that will walk you through OpenCV but first make sure that the OpenCV
-library is installed on your raspberryPi. With those files you will learn the basics
-of OpenCV in C++. FaceDetection.cpp is the file that we used to detect human faces. In here we refer to this file haarcascade_frontalface_default.xml,
-so you have also to download this file on your raspberryPi.
-
-- In map Compass_sensor you can find the code for the magnetometer sensor MPU-9250.
-This sensor it consists of three parts gyroscope, accelerometer and magnetometer. The code is written in C++. 
-So that means that there is two files cpp en h. In the MPU9250.h file we declared the variable's, methods and the registers we need.
-In the MPU9250.cpp file we included the header file alongside some other libraries. 
-This code is intended to get an orientation(compass) of the rover.
-
 -  Low/high water level is responsible for the measuring of the water level in the tank. Base on the level of water it gives a high or low waterlevel. The code is written in C. File https://gitlab.fdmci.hva.nl/balalib/project-row/-/blob/WaterPomp/Water_pomp/water_level_sensor.c contains the code of water level before running this code the Installation process must be done first. The libary that is needed is wiringPi. 
 
-
 ## How to use
+To use the firebrigade rover you only need the rover and a mobile android phone. The mobile android phone needs to release a mobile hotspot to which the raspberry pi of the rover needs to connect to. It should connect to your phone automatically once you turn the rover on (presuming you have had a previous connection with the raspberry pi.). To learn how to setup a mobile hotspot in combination with the pi we refer to this article that explains it step by step: https://medium.com/geekculture/how-to-connect-to-the-raspberry-pi-using-mobile-hotspot-2362a6b02efc.
+
+Once you have the network setup, the only thing that is left to do is by connecting to the rover by pressing: START RIDE, in the app.
+This enables a TCP socket connection between the two devices, from which messages can be sent and received by both parties. 
+
+To enable the camera used on the raspberry pi, you have to click the CAMERA button on the app to enable an UDP connection from which camerafeed is sent from the server to the app.
 
 ## Important Information
 
