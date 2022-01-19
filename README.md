@@ -1,9 +1,9 @@
 # IT201/2-3(Fire Brigade)
 
 ## About this project
-For this project we had to come with an idea for a rescue car.
-We came up with an firebrigade rover remotly controlled with an app.
-Our rover has the following functions:
+For this project we had to create a raspberryPi controlled car that can be used in rescue situation.
+our idea was a firebrigade assitance car that can be remotely controlled by an app on your phone.
+Our project contains the following functionalities:
 - Orientation (magnetometer)
 - Critical temperature warning (temperature sensor)
 - Low/high water level
