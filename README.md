@@ -32,9 +32,9 @@ For the use of this code the following external libraries are needed on the rasp
 - OpenCV<br>
     https://solarianprogrammer.com/2019/09/17/install-opencv-raspberry-pi-raspbian-cpp-python-development/
 - pigpio <br>   
-     https://abyz.me.uk/rpi/pigpio/download.html <br>
+     https://abyz.me.uk/rpi/pigpio/download.html
 - fmod<br>
-     https://wiki.debian.org/FMOD<br>     
+     https://wiki.debian.org/FMOD     
 
 
 To download the application install AndroidStudio and open the Java app file from this directory. 
@@ -45,19 +45,7 @@ To download the application install AndroidStudio and open the Java app file fro
 
 ## How to use
 
-
-
 ## Important Information
-
-    ~The START keyword should only be said after hearing a second beep. 
-    This means that the robot is ready to hear you out (subscribe/unsubscribe).
-    The advice above also applies to the BINGO keyword.
-
-    ~The robot makes a little movement while saying a number but there is still a chance the robot can fall over.
-    That is why it is recommended to have someone close to the robot if that happens.
-
-    ~Only scan the QR-Code on the card when the robot is done with talking and you hear a second beep.
-    This is the most safe way to recognize a valid winner and overload of data to the robot. 
 
 ## Contact information
 Joris Brouwer: joris.brouwer2@hva.nl<br>
