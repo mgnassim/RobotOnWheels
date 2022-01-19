@@ -39,7 +39,12 @@ For the use of this code the following external libraries are needed on the rasp
 
 To download the application install AndroidStudio and open the Java app file from this directory. 
 
+## Code explanation
+
+
+
 ## How to use
+
 
 
 ## Important Information
