@@ -1,9 +1,9 @@
 # IT201/2-3(Fire Brigade)
 
 ## About this project
-For this project we had to create a raspberryPi controlled car that can be used in rescue situation.
+For this project we had to create a raspberryPi controlled car that can be used in rescue situations.
 Our idea was a firebrigade assitance car that can be remotely controlled by an app on your phone.
-Our project contains the following functionalities:
+Our project contains the following functionalities: <br>
 - Orientation (magnetometer)
 - Critical temperature warning (temperature sensor)
 - Low/high water level
@@ -16,7 +16,7 @@ Our project contains the following functionalities:
 
 
 ## Before starting
-Before starting with this product make shure you have an android device available for the application. the application was designed for a screen ratio of 3040 x 1440 pixels in landscape mode. If you use a smaller/bigger screen, the layout may not be optimal.
+Before starting with this product make shure you have an android device available for the application. The application was designed for a screen ratio of 3040 x 1440 pixels in landscape mode. If you use a smaller/bigger screen, the layout may not be optimal.
 
 ## Installation
 
