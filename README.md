@@ -62,6 +62,10 @@ Once you have the network setup, the only thing that is left to do is by connect
 This enables a TCP socket connection between the two devices, from which messages can be sent and received by both parties. 
 
 To enable the camera used on the raspberry pi, you have to click the CAMERA button on the app to enable an UDP connection from which camerafeed is sent from the server to the app.
+## Hardware schematic
+<img src="https://gitlab.fdmci.hva.nl/balalib/project-row/-/blob/main/img/schema.png" width="500"><br>
+<img src="https://gitlab.fdmci.hva.nl/balalib/project-row/-/blob/main/img/tabel.png" width="300"><br>
+
 
 ## Important Information
 
