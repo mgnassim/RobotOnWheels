@@ -40,6 +40,8 @@ For the use of this code the following external libraries are needed on the rasp
 To download the application install AndroidStudio and open the Java app file from this directory. 
 
 ## Code explanation
+-  Low/high water level is responsible for the measuring of the water level in the tank. Base on the level of water it gives a high or low waterlevel. The code is written in C. File https://gitlab.fdmci.hva.nl/balalib/project-row/-/blob/WaterPomp/Water_pomp/water_level_sensor.c contains the code of water level before running this code the Installation process must be done first. The libary that is needed is wiringPi. 
+
 
 ## How to use
 
