@@ -2,8 +2,8 @@
 
 ## About this project
 For this project we had to create a raspberryPi controlled car that can be used in rescue situations.
-Our idea was a firebrigade assitance car that can be remotely controlled by an app on your phone.
-Our project contains the following functionalities: <br>
+Our idea was a firebrigade assitance car that can be remotely controlled by an app on your phone.<br>
+Our project contains the following functionalities:
 - Orientation (magnetometer)
 - Critical temperature warning (temperature sensor)
 - Low/high water level
@@ -18,7 +18,7 @@ Before starting with this product make shure you have an android device availabl
 
 ## Installation
 
-First make shure your system is up-to-date by using the following commands:
+First make sure your system is up-to-date by using the following commands:
 sudo apt-get update
 sudo apt-get upgrade
 
@@ -38,7 +38,7 @@ For the use of this code the following external libraries are needed on the rasp
 To download the application install AndroidStudio and open the Java app file from this directory. 
 
 ## Code explanation
-- In map OpenCV there are some cpp files that will walk you through OpenCV but first make sure that the OpenCV
+- In the OpenCV folder there are some cpp files that will walk you through OpenCV but first make sure that the OpenCV
 library is installed on your raspberryPi. With those files you will learn the basics
 of OpenCV in C++. FaceDetection.cpp is the file that we used to detect human faces. In here we refer to this file haarcascade_frontalface_default.xml,
 so you have also to download this file on your raspberryPi.
