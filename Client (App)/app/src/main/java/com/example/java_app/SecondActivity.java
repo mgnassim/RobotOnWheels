@@ -33,6 +33,9 @@ public class SecondActivity extends AppCompatActivity {
     Thread Thread1 = null;
     Thread UDP = null;
     int level = 0;
+    String IP_ADDRESS = "172.20.10.10";
+    int CAMERA_PORT = 51000;
+    int SERVER_PORT = 8000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +60,7 @@ public class SecondActivity extends AppCompatActivity {
         btnConnect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Thread1 = new Thread(new Thread1());
+                Thread1 = new Thread(new Connection());
                 Thread1.start();
             }
         });
@@ -75,12 +78,12 @@ public class SecondActivity extends AppCompatActivity {
     class UDP implements Runnable {
         public void run() {
             try {
-                InetAddress address = InetAddress.getByName("172.20.10.10");
+                InetAddress address = InetAddress.getByName(IP_ADDRESS);
                 DatagramSocket socket = new DatagramSocket();
 
                 while (true) {
 
-                    DatagramPacket request = new DatagramPacket(new byte[1], 1, address, 51000);
+                    DatagramPacket request = new DatagramPacket(new byte[1], 1, address, CAMERA_PORT);
                     socket.send(request);
 
                     byte[] buffer = new byte[65536];
@@ -95,7 +98,6 @@ public class SecondActivity extends AppCompatActivity {
                         @SuppressLint("SetTextI18n")
                         @Override
                         public void run() {
-                            System.out.println(jpgBase64);
                             imageView.setImageBitmap(decodeBase64StringToBitmap(jpgBase64));
                         }
                     });
@@ -134,11 +136,11 @@ public class SecondActivity extends AppCompatActivity {
     private BufferedReader input, input2;
     Socket socket, socket2;
 
-    class Thread1 implements Runnable {
+    class Connection implements Runnable {
         public void run() {
             try {
-                socket = new Socket("172.20.10.10", 8000);
-                socket2 = new Socket("172.20.10.10", 8001);
+                socket = new Socket(IP_ADDRESS, SERVER_PORT);
+                socket2 = new Socket(IP_ADDRESS, 8001);
                 output = new PrintWriter(socket.getOutputStream());
                 input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                 output2 = new PrintWriter(socket2.getOutputStream());
@@ -150,14 +152,14 @@ public class SecondActivity extends AppCompatActivity {
                         System.out.println("Connected\n");
                     }
                 });
-                new Thread(new Thread2()).start();
+                new Thread(new Receive()).start();
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
     }
 
-    class Thread2 implements Runnable {
+    class Receive implements Runnable {
         @Override
         public void run() {
             while (true) {
@@ -185,7 +187,7 @@ public class SecondActivity extends AppCompatActivity {
                             }
                         });
                     } else {
-                        Thread1 = new Thread(new Thread1());
+                        Thread1 = new Thread(new Connection());
                         Thread1.start();
                         return;
                     }
@@ -196,10 +198,10 @@ public class SecondActivity extends AppCompatActivity {
         }
     }
 
-    class Thread3 implements Runnable {
+    class Send implements Runnable {
         private String message;
 
-        Thread3(String message) {
+        Send(String message) {
             this.message = message;
         }
 
@@ -229,12 +231,12 @@ public class SecondActivity extends AppCompatActivity {
             public boolean onTouch(View v, MotionEvent event) {
                 switch (event.getAction()) {
                     case MotionEvent.ACTION_DOWN:
-                        Thread thread = new Thread(new Thread3("z"));
+                        Thread thread = new Thread(new Send("z"));
                         thread.start();
                         return true;
                     case MotionEvent.ACTION_UP:
                     case MotionEvent.ACTION_CANCEL:
-                        thread = new Thread(new Thread3("x"));
+                        thread = new Thread(new Send("x"));
                         thread.start();
                         return true;
                 }
@@ -261,7 +263,7 @@ public class SecondActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 level++;
-                Thread thread = new Thread(new Thread3("o"));
+                Thread thread = new Thread(new Send("o"));
                 thread.start();
                 if (level >= 2) {
                     level = 2;
@@ -277,7 +279,7 @@ public class SecondActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 level--;
-                Thread thread = new Thread(new Thread3("l"));
+                Thread thread = new Thread(new Send("l"));
                 thread.start();
                 if (level <= -2) {
                     level = -2;
@@ -294,10 +296,10 @@ public class SecondActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (siren.isChecked()) {
-                    Thread thread = new Thread(new Thread3("b"));
+                    Thread thread = new Thread(new Send("b"));
                     thread.start();
                 } else {
-                    Thread thread = new Thread(new Thread3("v"));
+                    Thread thread = new Thread(new Send("v"));
                     thread.start();
                 }
             }
@@ -313,12 +315,12 @@ public class SecondActivity extends AppCompatActivity {
             public boolean onTouch(View v, MotionEvent event) {
                 switch (event.getAction()) {
                     case MotionEvent.ACTION_DOWN:
-                        Thread thread = new Thread(new Thread3("w"));
+                        Thread thread = new Thread(new Send("w"));
                         thread.start();
                         return true;
                     case MotionEvent.ACTION_UP:
                     case MotionEvent.ACTION_CANCEL:
-                        thread = new Thread(new Thread3("q"));
+                        thread = new Thread(new Send("q"));
                         thread.start();
                         return true;
                 }
@@ -335,12 +337,12 @@ public class SecondActivity extends AppCompatActivity {
             public boolean onTouch(View v, MotionEvent event) {
                 switch (event.getAction()) {
                     case MotionEvent.ACTION_DOWN:
-                        Thread thread = new Thread(new Thread3("s"));
+                        Thread thread = new Thread(new Send("s"));
                         thread.start();
                         return true;
                     case MotionEvent.ACTION_UP:
                     case MotionEvent.ACTION_CANCEL:
-                        thread = new Thread(new Thread3("q"));
+                        thread = new Thread(new Send("q"));
                         thread.start();
                         return true;
                 }
@@ -357,12 +359,12 @@ public class SecondActivity extends AppCompatActivity {
             public boolean onTouch(View v, MotionEvent event) {
                 switch (event.getAction()) {
                     case MotionEvent.ACTION_DOWN:
-                        Thread thread = new Thread(new Thread3("d"));
+                        Thread thread = new Thread(new Send("d"));
                         thread.start();
                         return true;
                     case MotionEvent.ACTION_UP:
                     case MotionEvent.ACTION_CANCEL:
-                        thread = new Thread(new Thread3("q"));
+                        thread = new Thread(new Send("q"));
                         thread.start();
                         return true;
                 }
@@ -379,31 +381,17 @@ public class SecondActivity extends AppCompatActivity {
             public boolean onTouch(View v, MotionEvent event) {
                 switch (event.getAction()) {
                     case MotionEvent.ACTION_DOWN:
-                        Thread thread = new Thread(new Thread3("a"));
+                        Thread thread = new Thread(new Send("a"));
                         thread.start();
                         return true;
                     case MotionEvent.ACTION_UP:
                     case MotionEvent.ACTION_CANCEL:
-                        thread = new Thread(new Thread3("q"));
+                        thread = new Thread(new Send("q"));
                         thread.start();
                         return true;
                 }
                 return false;
             }
         });
-    }
-
-    public void switchMode(View view) {
-        try {
-            socket.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-            System.out.println("Closing socket not succeeded.");
-        }
-        Thread thread = new Thread(new Thread3("p"));
-        thread.start();
-        Intent intent = new Intent(this, HoseActivity.class);
-        startActivity(intent);
-        System.out.println("Going to Hose control mode");
     }
 }
