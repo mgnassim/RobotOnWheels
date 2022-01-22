@@ -40,35 +40,76 @@ For the use of this code the following external libraries are needed on the rasp
 To download the application install AndroidStudio and open the Java app file from this directory. 
 
 ## Code explanation
+# OpenCV
 - In the OpenCV folder there are some cpp files that will walk you through OpenCV but first make sure that the OpenCV
 library is installed on your raspberryPi. With those files you will learn the basics
 of OpenCV in C++. FaceDetection.cpp is the file that is used to detect human faces. It references to haarcascade_frontalface_default.xml,
 so make sure you download it on your system.
 
+# Magnetometer
 - In the Compass_sensor folder you can find the code for the magnetometer MPU-9250.
 This sensor consists of three parts: gyroscope, accelerometer and magnetometer. This code is written in C++ and thus consists of two files,
 a .cpp and a h. header file. In the MPU9250.h file the the variable's, methods and the registers we need are declared .
 In the MPU9250.cpp file the header file alongside some other libraries have to be included. 
 This code is intended to get a directional orientation(compass) for the rover.
 
+# Water moisture sensor
 -  Low/high water level is responsible for the measuring of the amount of water in the tank. Based on the amount of water it gives a high or low value wich is represented in the application. The code is written in C. File https://gitlab.fdmci.hva.nl/balalib/project-row/-/blob/WaterPomp/Water_pomp/water_level_sensor.c contains the code for water level. Before running this code, the Installation process must be done first.
+
+# Water pump
 -  Water Pump is an essential part of the product it makes sure to pump the water out of the tank and through the hose. The Code is pretty simple, by using a switch caseyou can turn the pump on or off. File https://gitlab.fdmci.hva.nl/balalib/project-row/-/blob/WaterPomp/Water_pomp/waterPomp.c contains the code and is written in C. 
+
+# Wheel Encoder (speedometer)
 - wheel encoder measures the speed of the rover itself in meters per secon(m/s). The code uses of interupts to make sure that after every second a caculation takes place for the speed. The sensor gives a value in RPM(rotations per minute) and converts it to meters per second. File https://gitlab.fdmci.hva.nl/balalib/project-row/-/blob/Wheel-encoder/Wheel_encoder/speedo.c contains the code and is written in C. 
+
+# Ultrasonic sensor
 - In the distance sensor folder you can find the code for the ultrasonic sensor which is responsible for measureing the distance between the car and the object. To compile use the following command: "g++ -Wall *name file* -o *give name executable* -lwiringPi"
+
+# Siren
 - In the siren folder you can find the code for the siren. The siren consists of an LED light and a speaker. when the siren turns on, the led starts to blink and an audio files starts playing thorugh the speaker. to compile use the following command: "g++ -Wall  *name file**  -o *give name executable* -lwiringPi -I/usr/local/include -L/usr/local/lib -lfmod -pthread"
+
+# Servomotor
 - In the servo folder you can find the code fore the servo motor. The makes it possible to move the waterhose up and down. To compile use the following commanD: "g++ -Wall -pthread -o *name file* *name executable* -lpigpio -lrt"
-- In Server.py you will find several classes which implement the use of the code written in C/C++ for the sensor/actuators. To be able to use the code written in those language(s) in Python these C++ files are compiled to object/shared object files. 
-- In the app there are several classes to be found. In the main application there is a class to be found for a UDP connection between the phone and the raspberry pi. There are also classes to be found for receiving and sending messages over a TCP connection between the phone and the pi.
+
+# Server
+•	The server can be ran by running ‘python Server.py’ in the command line on the raspberry pi. In Server.py you will find several classes which implement the use of the code written in C/C++ for the sensor/actuators. For example there is a class called Ultrasonic. This class has a function which returns the distance between the rover and the ultrasonic sensor. That function calls another function from a shared library compiled from C/C++ which does the actual executing and calculating.  
+To be actually able to use code from the shared library, we use a standard python library called ‘ctypes’.  It provides C compatible data types, and allows calling functions in DLLs or shared libraries. It can be used to wrap these libraries in pure Python.  From this library we use the class ‘cdll’. This class contains a function called LoadLibrary which does all the work for us and loads a shared library and returns it. 
+The server gets messages from the client (app) and uses those messages accordingly to execute a specific function of the rover. The ‘keybindings’ are as following: 
+b = siren on
+v = siren off
+w = voren rijden
+s = achter rijden 
+d = links rijden 
+a = rechts rijden
+q = stop met rijden na loslaten van w, a, s,  d
+o = servo (o)mhoog
+l = servo om(l)aag 
+z = shoot pump
+x = stop shooting pump
+
+# Client 
+•	The Client (the app) has two activities. The first activity has basically only one goal, greeting you with a warm welcome and redirecting the user to the control interface. This contains pretty basic code and contains some textViews with a button in the middle. The button has an onClick trigger which executes a specific function that starts an ‘Intent’. This intent tries to find another java class and redirects the user.
+ The second activity is the control interface, where all the magic happens. In the app there are several inner classes to be found. First off there are three classes called ‘Connection’, ‘Receive’ and ‘Send’. 
+**Connection:** this class has a pretty straightforward function to fullfill. A socket is initialized with data like: the ip address of the pi and the port of the socket. After the socket, an input and output are made which are later used in the classes ‘Receive’ and ‘Send’. 
+**Receive:** This class uses the inputStream of ‘Connection’ and is being used to store the value of the message from the server into a variable. This message contains the values of the sensors wired to the rover. The value of every sensor is split and stored into a array. Each index is the value of each sensor. [0] = temperature, [1] = distance, [2] = rpm of m/s, [3] = orientation/compass, [4] = waterMoistureSensor.
+A textView is made then to show the value of each sensor to the user and is refreshed everytime a message is received from the server if its not null.
+**Send:** This class uses the outputstream made in ‘Connection’ and has a Constructor with a String parameter. It uses the value in the parameter and uses .write() to send the message accordingly to the server. The server uses the message to accordingly execute specific actions the rover is capable of.  
+Lastly we have the inner class ‘UDP’ which is meant for the live camera stream. The reason because the camera has a seperate server is because another transmission protocol is used for communicaton between the phone and the pi. For this server a socket is being used with UDP. (User Datagram Protocol) A TCP/IP protocol that is widely used for streaming audio and video, voice over IP (VoIP) and videoconferencing. UDP is considered an unreliable delivery protocol because it does not check for errors, but it is still very fast compared to TCP which the other classes use. 
+**UDP:** Java has a standard class called DatagramSocket and DatagramPacket. UDP uses datagrams, which are data packets used in this protocol, to send data to the receiver. First off we start by initializing a DatagramSocket through which we can send DatagramPackets we make after. We make a request datagrampacket in which we request data from the server, after which we make datagrampacket which will have the value of the response from the server. This datagrampacket is way bigger than the request because this will have the base64 value of the camera frame we get. We make a String object which has the value of the message of the datagram packet, which we decode with the help of the function ‘decodeBase64ToBitmap’. 
+Exactly as the function says, we converted the base64 message to a Bitmap. A bitmap is a type of memory organization or image file format used to store digital images. Continuously in a while loop running in a seperate thread, the imageView is being changed countless times according to the value of the bitmap. That is how the camera view is being livestreamed to the app.
 
 ## How to use
-To use the firebrigade rover you only need the rover and a mobile android phone. The mobile android phone needs to release a mobile hotspot to which the raspberry pi of the rover needs to connect to. It should connect to your phone automatically once you turn the rover on (presuming you have had a previous connection with the raspberry pi.). To learn how to setup a mobile hotspot in combination with the pi we refer to this article that explains it step by step: https://medium.com/geekculture/how-to-connect-to-the-raspberry-pi-using-mobile-hotspot-2362a6b02efc.
 
-Once you have the network setup, the only thing that is left to do is by connecting to the rover by pressing: START RIDE, in the app.
-This enables a TCP socket connection between the two devices, from which messages can be sent and received by both parties. 
+To use the firebrigade rover you only need the rover and a mobile android phone. The mobile android phone needs to release a mobile hotspot to which the raspberry pi of the rover needs to connect to. It should connect to your phone automatically once you turn the rover on (assuming you have had a previous connection with the raspberry pi.). To learn how to setup a mobile hotspot in combination with the pi we refer to this article that explains it step by step: https://medium.com/geekculture/how-to-connect-to-the-raspberry-pi-using-mobile-hotspot-2362a6b02efc.
+You have the connection and network setup now, perfect! The next step is to get the app onto your android phone. For this step you only need to have your laptop once. Open Android Studio (see Installation) and navigate to ‘File’ in the top left of your screen. Click on ‘Open Project/Folder’ and navigate to where you extracted the repository on your system. Access the folder, we don’t need the whole repository of course because we only need the app. Select ‘Client (App)’ as the folder you want to open and open.
+It is not small so it may take a few minutes to let the application build with gradle. After you see a message that the build is finished there is a final thing we need to check in the code. To be able to connect to the raspberry pi with the app, you need to insert the valid IP-adress of the raspberry pi. Access SecondActivity.java where you will see  a few initialized variables at the top. The only variable you need to change is ‘String IP_ADDRESS’. Change the value of this variable to the IP of the raspberry pi. 
+Now you have the app setup, it is time to put it on your phone 😄. Grab an USB-C/Micro-USB cable and connect the phone to the computer. Now go to Android Studio and see whether or not the name of the phone appears, where the name of the emulator normally sits. It doesn’t? Use the Connection Assisstant. A wide explanation can be found here: https://developer.android.com/studio/run/device
+Run the app on your connected phone and that’s it! The app is now installed onto the phone. The cable can now be removed. 
 
-To enable the camera used on the raspberry pi, you have to click the CAMERA button on the app to enable an UDP connection from which camerafeed is sent from the server to the app.
+The next step is enabling the rover itself. The rover can be turned on by switching the power button on the back. Double check whether all the cables are in the right place and the battery is connected. 
+Once the rover is turned on, the only thing that is left to do is by connecting to the rover by pressing: START RIDE, in the app. This enables a TCP socket connection between the two devices, from which messages can be sent and received by both parties.
+To enable the camera used on the raspberry pi, you have to click the CAMERA button on the app to enable an UDP connection from which a camerafeed is sent from the server to the app. Now you can see a live view of the rover! Time to extinguish some fire 🔥🚒!
 
-## Important Information
 ## Hardware schematic
 <img src="https://gitlab.fdmci.hva.nl/balalib/project-row/-/raw/main/img/schema.png" width="500"><br>
 <img src="https://gitlab.fdmci.hva.nl/balalib/project-row/-/raw/main/img/tabel.png" width="300"><br>
