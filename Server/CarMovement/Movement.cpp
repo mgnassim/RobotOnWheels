@@ -38,21 +38,6 @@ class Movement {
         }
 };
 
-int main()
-{
-    // Creating an object
-    Movement car;
-
-    // Calling function
-    car.goForwards(fd);
-    car.goBackwards(fd);
-    car.goRight(fd);
-    car.goLeft(fd);
-    car.stop(fd);
-
-    return 0;
-}
-
 extern "C" {
     Movement* Movement_new(){ return new Movement(); }
     void Movement_goForwards(Movement* move){ move -> goForwards(fd); }
