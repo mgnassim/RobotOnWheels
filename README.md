@@ -44,9 +44,9 @@ For the pc:
 ## Code explanation
 # OpenCV
 - In the OpenCV folder there are some cpp files that will walk you through OpenCV but first make sure that the OpenCV
-library is installed on your raspberryPi. With those files you will learn the basics
-of OpenCV in C++. FaceDetection.cpp is the file that is used to detect human faces. It references to haarcascade_frontalface_default.xml,
-so make sure you download it on your system.
+library is installed on your raspberryPi. With those files you will learn the basics of OpenCV in C++. Using OpenCV, you can pretty much do every Computer Vision task that you can think of. You can do things such as image processing operations, building GUI, video analysis, 3D reconstruction,
+Face and object recognition and so on.. <br>
+The reason we use OpenCV is to detect human faces. We implemented our use case using the Haar Cascade classifier. FaceDetection.cpp is the file that is used to detect human faces. It references to haarcascade_frontalface_default.xml, so make sure you download it on your system. I will explain to you what these Haar Cascade Classifiers are. This is basically a machine learning based approach where the cascade function is trained from a large number of positive and negative images. Based on the training, it is then used to detect objects in other images. So how this works, they are huge single .xml files with massive feature sets, each xml corresponding to a very specific type of use case.
 
 # Magnetometer
 - In the Compass_sensor folder you can find the code for the magnetometer MPU-9250.
