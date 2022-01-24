@@ -46,14 +46,6 @@ public:
     }
 };
 
-int main()
-{
-    Temperature temperature;
-    temperature.read_temp_raw();
-    temperature.readTemp();
-    return 0;
-}
-
 extern "C"
 {
     Temperature* Temperature_new() { return new Temperature(); }

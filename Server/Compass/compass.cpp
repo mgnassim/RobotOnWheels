@@ -241,23 +241,6 @@ void MPU::setLastDirection(int direction)
     MPU::lastDirection = direction;
 }
 
-int main()
-{
-    MPU mpu;
-
-    mpu.mpuInit();
-    //cout << "The temperature in Celcius is: " << mpu.readTemperature() << endl;
-
-    while (true)
-    {
-        mpu.getCompassAngle();
-        cout << "last direction is: " << mpu.getLastDirection() << endl;
-        cout << "orientation: " << mpu.returnOrientation() << endl;
-    }
-
-    return 0;
-}
-
 extern "C"
 {
     MPU* MPU_new() { return new MPU(); }

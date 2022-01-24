@@ -64,15 +64,6 @@ public:
     }
 };
 
-int main() {
-
-    FaceDetection face;
-
-    face.detectFace();
-
-    return 0;
-}
-
 extern "C" {
     FaceDetection* FaceDetection_new() { return new FaceDetection; }
     void FaceDetection_detectionFaces(FaceDetection* facedetect) { facedetect -> detectFace(); }

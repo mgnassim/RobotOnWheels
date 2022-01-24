@@ -25,13 +25,6 @@ public:
     }
 };
 
-int main(void)
-{
-    WaterPump waterPump;
-    waterPump.shootWaterPump();
-    waterPump.stopWaterPump();
-}
-
 extern "C"
 {
     WaterPump *WaterPump_new() { return new WaterPump(); }

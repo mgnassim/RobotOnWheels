@@ -62,16 +62,6 @@ public:
     }
 };
 
-int main(void)
-{
-
-    WaterSensor waterSensor;
-    // waterSensor.read_mcp3208_adc();
-    waterSensor.returnMoistureValue();
-
-    return 0;
-}
-
 extern "C"
 {
     WaterSensor *WaterSensor_new() { return new WaterSensor(); }

@@ -100,15 +100,6 @@ public:
     }
 };
 
-int main()
-{
-    Servo servo;
-    servo.moveClockwise();
-    servo.moveAnticlockwise();
-
-    return 0;
-}
-
 extern "C"
 {
     Servo *Servo_new() { return new Servo(); }

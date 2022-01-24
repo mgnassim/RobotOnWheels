@@ -58,14 +58,6 @@ public:
     }
 };
 
-int main()
-{
-
-    Siren siren;
-
-    return 0;
-}
-
 extern "C"
 {
     Siren *Siren_new() { return new Siren(); }

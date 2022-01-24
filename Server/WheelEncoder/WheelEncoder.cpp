@@ -55,16 +55,6 @@ public:
     }
 };
 
-int main()
-{
-
-    WheelEncoder wheelEncoder;
-    wheelEncoder.initRPM();
-    wheelEncoder.readSpeed(); 
-
-    return 0;
-}
-
 extern "C"
 {
     WheelEncoder* WheelEncoder_new() { return new WheelEncoder(); }

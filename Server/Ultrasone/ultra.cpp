@@ -17,16 +17,6 @@ class Ultrasonic {
     }
 };
 
-int main(){
-
-    Ultrasonic ultrasonic;
-
-    ultrasonic.returnDistance();
-
-    return 0;
-
-}
-
 extern "C" {
     Ultrasonic* Ultrasonic_new(){ return new Ultrasonic(); }
     int Ultrasonic_returnDistance(Ultrasonic* ultrasonic){ return ultrasonic -> returnDistance(); }
