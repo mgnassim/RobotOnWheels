@@ -46,10 +46,6 @@ public:
 
             // Write the frame to the output
             output.write(frame);
-            int indexVoorHulp = 1;
-            cout << "Schrijven naar videobestand - Frame " << indexVoorHulp << endl;
-
-            indexVoorHulp++;
 
             // Give time to process
             if (cv::waitKey(25) >= 0) {
@@ -58,7 +54,6 @@ public:
         }
 
         // Release writer and video capture
-        cout << "Gestopt met schrijven naar videobestand.\n";
         output.release();
         video.release();
     }
