@@ -30,7 +30,7 @@ Enter the command sudo raspi-config on your raspberryPi and go to interface opti
 
 For the use of this code the following external libraries are needed on the raspberryPi:
 - **WiringPi**<br>
-     sudo apt-get install wiringPi <br>
+     http://wiringpi.com/
 - **OpenCV**<br>
     https://solarianprogrammer.com/2019/09/17/install-opencv-raspberry-pi-raspbian-cpp-python-development/
 - **Pigpio** <br>   https://abyz.me.uk/rpi/pigpio/download.html
