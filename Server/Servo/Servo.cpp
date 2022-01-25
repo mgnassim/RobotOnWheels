@@ -3,27 +3,23 @@
 #include <wiringPi.h>
 #include <unistd.h>
 #include <conio.h>
-#include <chrono>
-#include <thread>
 
-using namespace std;
 
 class Servo
 {
 
 public:
     int servoPin = 17;     //pin
-                           // parameters pwm
     int pwmFrequency = 50; // hertz default
-    int range = 20000;     //default
 
     // servo werkbereik
     int clockwise = 2500;    //most clockwise
     int antiClockwise = 500; //most anticlockwise
+    int off = 0;   //low is of
 
     // index
     int level = 0; //val for storing
-    int off = 0;   //default
+
 
     /***
  * initalise and set default values
@@ -75,7 +71,7 @@ public:
         else
         {
             gpioServo(servoPin, antiClockwise);
-            std::this_thread::sleep_for(std::chrono::milliseconds(500));
+            usleep(500);
             gpioServo(servoPin, off);
             level--;
         }
@@ -93,7 +89,8 @@ public:
         else
         {
             gpioServo(servoPin, clockwise);
-            std::this_thread::sleep_for(std::chrono::milliseconds(650));
+            usleep(650);
+
             gpioServo(servoPin, off);
             level++;
         }
