@@ -149,7 +149,7 @@ def sendSensorData():
         temperatureToSend = str(temp.returnTemperature()).encode('utf-8')
         distanceToSend = str(ultra.returnDistance()).encode('utf-8')
         speedToSend = str(wheelEncoder.returnSpeed()).encode('utf-8')
-        # moistureValueToSend = str(returnMoisture(waterSensor.getMoistureValue())).encode('utf-8')
+        moistureValueToSend = str(returnMoisture(waterSensor.getMoistureValue())).encode('utf-8')
         endMessageToSend = str(temperatureToSend + " " + distanceToSend + " " + speedToSend + " " + orientationToSend).encode('utf-8') + b'\n'
         clientsocket.sendall(endMessageToSend)
 
