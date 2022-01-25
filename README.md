@@ -30,7 +30,7 @@ Enter the command sudo raspi-config on your raspberryPi and go to interface opti
 
 For the use of this code the following external libraries are needed on the raspberryPi:
 - **WiringPi**<br>
-     http://wiringpi.com/
+     sudo apt-get install wiringPi <br>
 - **OpenCV**<br>
     https://solarianprogrammer.com/2019/09/17/install-opencv-raspberry-pi-raspbian-cpp-python-development/
 - **Pigpio** <br>   https://abyz.me.uk/rpi/pigpio/download.html
@@ -49,7 +49,7 @@ Face and object recognition and so on.. <br>
 The reason we use OpenCV is to detect human faces. We implemented our use case using the Haar Cascade classifier. FaceDetection.cpp is the file that is used to detect human faces. It references to haarcascade_frontalface_default.xml, so make sure you download it on your system. I will explain to you what these Haar Cascade Classifiers are. This is basically a machine learning based approach where the cascade function is trained from a large number of positive and negative images. Based on the training, it is then used to detect objects in other images. So how this works, they are huge single .xml files with massive feature sets, each xml corresponding to a very specific type of use case.
 
 # Magnetometer
-- First, you need to know that the earth magnetic is very weak, so compasses are triable sensors. It is very hard to get compass reading if you have an electric motor nearby, big power cables nearby or you are in a classroom with steal desks all these things make the compass not work well. So, your best bet with the compass is to be outside at a wooden table. That’s where it’s going to work the best.
+- First, you need to know that the earth magnetic is very weak, so compasses are terrible sensors. It is very hard to get compass reading if you have an electric motor nearby, big power cables nearby or you are in a classroom with steal desks all these things make the compass not work well. So, your best bet with the compass is to be outside at a wooden table. That’s where it’s going to work the best.
 -  MPU-9250 sensor consists of three parts: 3-Axis gyroscope, 3-Axis accelerometer and 3-Axis magnetometer. Reading the gyroscope data will give you degrees per second so the turn rate in x y and z all three axis. The accelerometer measures the acceleration in g’s. The standard value of gravity, or normal gravity, g, is defined as go=980.665 centimeters per second squared, or 32.1741 feet per second squared. And the magnetometer is basically the compass. This sensor has an I2c interface, so make sure you enable the I2c interface option on your raspberryPi.   
 - In the Compass_sensor folder you can find the code for the magnetometer MPU-9250. This code is written in C++ and thus consists of two files,
 a .cpp and a h. header file. In the MPU9250.h file the the variable's, methods and the registers we need are declared .
@@ -57,13 +57,13 @@ In the MPU9250.cpp file the header file alongside some other libraries have to b
 This code is intended to get a directional orientation(compass) for the rover.
 
 # Water moisture sensor
--  Low/high water level is responsible for the measuring of the amount of water in the tank. Based on the amount of water it gives a high or low value wich is represented in the application. The code is written in C. File https://gitlab.fdmci.hva.nl/balalib/project-row/-/blob/WaterPomp/Water_pomp/water_level_sensor.c contains the code for water level. Before running this code, the Installation process must be done first.
+-  Low/high water level is responsible for the measuring of the amount of water in the tank. Based on the amount of water it gives a high or low value wich is represented in the application. The water sensor is an analog sensor it gives only analog values back, but the raspberryPi can only read digital values. To get the values of the sensor in digital we use the adc mcp3208 to convert analog to digital. mcp3208 gives the digital values of the water sensor to the raspberry base on the values the high and low will be assigned to the values. Before the use of the adc it require an SPI interface connection that be enable on raspberryPi self with the command sudo raspi-config for the values to come true . The code is written in C++. File https://gitlab.fdmci.hva.nl/balalib/project-row/-/blob/main/Server/WaterSensor/WaterSensor.cpp contains the code for water level. Before running this code, the Installation process must be done first.
 
 # Water pump
--  Water Pump is an essential part of the product it makes sure to pump the water out of the tank and through the hose. The Code is pretty simple, by using a switch caseyou can turn the pump on or off. File https://gitlab.fdmci.hva.nl/balalib/project-row/-/blob/WaterPomp/Water_pomp/waterPomp.c contains the code and is written in C. 
+-  Water Pump is an essential part of the product it makes sure to pump the water out of the tank and through the hose. The Code is pretty simple, by using a switch case you can turn the pump on or off. The pump self can only be controlled true a relais module for the code to work. File https://gitlab.fdmci.hva.nl/balalib/project-row/-/blob/main/Server/WaterPump/WaterPump.cpp contains the code and is written in C++. 
 
 # Wheel Encoder (speedometer)
-- wheel encoder measures the speed of the rover itself in meters per secon(m/s). The code uses of interupts to make sure that after every second a caculation takes place for the speed. The sensor gives a value in RPM(rotations per minute) and converts it to meters per second. File https://gitlab.fdmci.hva.nl/balalib/project-row/-/blob/Wheel-encoder/Wheel_encoder/speedo.c contains the code and is written in C. 
+- wheel encoder measures the speed of the rover itself in meters per secon(m/s). The code make use of interupts to make sure that after every second a caculation takes place for the speed. The sensor gives a value in RPM(rotations per minute) and converts it to meters per second. the caculation of the M/s is done with the help of the RPM, RPS and circumference of the wheel. File https://gitlab.fdmci.hva.nl/balalib/project-row/-/blob/main/Server/WheelEncoder/WheelEncoder.cpp contains the code and is written in C++. 
 
 # Ultrasonic sensor
 - In the distance sensor folder you can find the code for the ultrasonic sensor which is responsible for measureing the distance between the car and the object. To compile use the following command: "g++ -Wall *name file* -o *give name executable* -lwiringPi"
@@ -78,15 +78,15 @@ This code is intended to get a directional orientation(compass) for the rover.
 •	The server can be ran by running ‘python Server.py’ in the command line on the raspberry pi. In Server.py you will find several classes which implement the use of the code written in C/C++ for the sensor/actuators. For example there is a class called Ultrasonic. This class has a function which returns the distance between the rover and the ultrasonic sensor. That function calls another function from a shared library compiled from C/C++ which does the actual executing and calculating.  <br><br>
 To be actually able to use code from the shared library, we use a standard python library called ‘ctypes’.  It provides C compatible data types, and allows calling functions in DLLs or shared libraries. It can be used to wrap these libraries in pure Python.  From this library we use the class ‘cdll’. This class contains a function called LoadLibrary which does all the work for us and loads a shared library and returns it. 
 The server gets messages from the client (app) and uses those messages accordingly to execute a specific function of the rover. <br><br>The ‘keybindings’ are as following: <br>
-**b** = turn on the siren <br>
-**v** = turn off the siren<br>
-**w** = drive forewards <br>
-**s** = drive backwards  <br>
-**d** = turn left <br>
-**a** = turn right<br>
-**q** = stop driving<br>
-**o** = raise servo(hose)<br>
-**l** = lower servo(hose) <br>
+**b** = siren on <br>
+**v** = siren off <br>
+**w** = voren rijden <br>
+**s** = achter rijden  <br>
+**d** = links rijden <br>
+**a** = rechts rijden<br>
+**q** = stop met rijden na loslaten van w, a, s, d<br>
+**o** = servo (o)mhoog<br>
+**l** = servo om(l)aag <br>
 **z** = shoot pump<br>
 **x** = stop shooting pump<br>
 
