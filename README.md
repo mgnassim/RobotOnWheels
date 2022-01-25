@@ -76,12 +76,14 @@ To compile use the following command: "g++ -Wall *name file* -o *give name execu
 # Siren
 - In the siren folder you can find the code for the siren. The siren consists of an LED light and a speaker. when the siren turns on, the led starts to blink and an audio files starts playing thorugh the speaker.
 For the LED we are using a gpio signal pi n as an output and giving it an high or low value to blink.
-For the audio we are using an amplified speaker. To play audio we need the fmos lib  to make it possible. FMOD is a proprietary sound effects engine and authoring tool for video games and applications developed by Firelight Technologies.
-
-**Loading and playing.
-To play the sounds you must load them first
-Here is an example of opening an mp3 file to be streamed. System::createStream will open the file, and pre-buffer a small amount of data so that it will be able to play instantly when System::playSound is called.
-to compile use the following command: "g++ -Wall  *name file**  -o *give name executable* -lwiringPi -I/usr/local/include -L/usr/local/lib -lfmod -pthread"
+For the audio we are using an amplified speaker. To play audio we need the FMOD lib to make it possible. FMOD is a proprietary sound effects engine and authoring tool for video games and applications developed by Firelight Technologies.<br>
+First we have to initialise fmod
+the simplest way to initialize fmod is to simply calling System::init.
+To play the sounds we must load them first
+with  System::createStream we will open and load  the file, and pre-buffer a small amount of data so that it will be able to play instantly when System::playSound is called.
+what I implemented in the code is that when we initialise fmod we already load the file by default.
+then I made 3 function 1 for flashing the led that I already explained and the other 2  for playing and stopping the sound. I made a boolean to keep flashing the LED,it turns true when you call the function "play" the audio starts playing too when you cal the function "off" the boolean turns false and it wil stop the audio and turn the LED of.<br>
+To compile use the following command: "g++ -Wall  *name file**  -o *give name executable* -lwiringPi -I/usr/local/include -L/usr/local/lib -lfmod "
 
 # Servomotor
 - the servo motor is used for an up and down motion. it makes it  possible to move the waterhose up and down. The lib We need is pigpio. With this library it is easy to make the servo due PWM.
