@@ -66,13 +66,21 @@ This code is intended to get a directional orientation(compass) for the rover.
 - wheel encoder measures the speed of the rover itself in meters per secon(m/s). The code make use of interupts to make sure that after every second a caculation takes place for the speed. The sensor gives a value in RPM(rotations per minute) and converts it to meters per second. The caculation of the M/s is done with the help of the RPM, RPS and circumference of the wheel. File https://gitlab.fdmci.hva.nl/balalib/project-row/-/blob/main/Server/WheelEncoder/WheelEncoder.cpp contains the code and is written in C++. 
 
 # Ultrasonic sensor
-- In the distance sensor folder you can find the code for the ultrasonic sensor which is responsible for measureing the distance between the car and the object. To compile use the following command: "g++ -Wall *name file* -o *give name executable* -lwiringPi"
+- The SRF02 is a single transducer ultrasonic rangefinder in our case the sensor  is responsible for measuring the distance between the car and the object.
+It takes 65 milliseconds from issuing the ping command to the result being available.
+The datasheet includes a list of all of its commands but for now we using command 81, which sends a burst and returns the result in cm. 
+We are using mostly the wiringPI lib for the code. Our code has only one function returnDistance. This fucntion does the following it write to the location registor and gives the command for Real Ranging Mode Result in centimeters. After that we give the sensor time for measurement.(the sesnor wil give an burst and wil wait for an echo then it wil make an calculation) after that we wil read out the data from the register location 3 here we wil find the result in cm and this data we wil return to the function.
+
+To compile use the following command: "g++ -Wall *name file* -o *give name executable* -lwiringPi"
 
 # Siren
 - In the siren folder you can find the code for the siren. The siren consists of an LED light and a speaker. when the siren turns on, the led starts to blink and an audio files starts playing thorugh the speaker. to compile use the following command: "g++ -Wall  *name file**  -o *give name executable* -lwiringPi -I/usr/local/include -L/usr/local/lib -lfmod -pthread"
 
 # Servomotor
-- In the servo folder you can find the code fore the servo motor. The makes it possible to move the waterhose up and down. To compile use the following commanD: "g++ -Wall -pthread -o *name file* *name executable* -lpigpio -lrt"
+- the servo motor is used for an up and down motion. it makes it  possible to move the waterhose up and down. The lib We need is pigpio. with this library it is easy to make the servo due PWM.
+first we have to decleare the gpio pin as an output pin. After that we have to set an freq for the servo 50 herts is the common freq for the servo to work. We have 2 function for the servo clockwise and anticlockwise
+
+To compile use the following commanD: "g++ -Wall -pthread -o *name file* *name executable* -lpigpio -lrt"
 
 # Server
 •	The server can be ran by running ‘python Server.py’ in the command line on the raspberry pi. In Server.py you will find several classes which implement the use of the code written in C/C++ for the sensor/actuators. For example there is a class called Ultrasonic. This class has a function which returns the distance between the rover and the ultrasonic sensor. That function calls another function from a shared library compiled from C/C++ which does the actual executing and calculating.  <br><br>
