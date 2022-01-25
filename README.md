@@ -74,11 +74,18 @@ We are using mostly the wiringPI lib for the code. Our code has only one functio
 To compile use the following command: "g++ -Wall *name file* -o *give name executable* -lwiringPi"
 
 # Siren
-- In the siren folder you can find the code for the siren. The siren consists of an LED light and a speaker. when the siren turns on, the led starts to blink and an audio files starts playing thorugh the speaker. to compile use the following command: "g++ -Wall  *name file**  -o *give name executable* -lwiringPi -I/usr/local/include -L/usr/local/lib -lfmod -pthread"
+- In the siren folder you can find the code for the siren. The siren consists of an LED light and a speaker. when the siren turns on, the led starts to blink and an audio files starts playing thorugh the speaker.
+For the LED we are using a gpio signal pi n as an output and giving it an high or low value to blink.
+For the audio we are using an amplified speaker. To play audio we need the fmos lib  to make it possible. FMOD is a proprietary sound effects engine and authoring tool for video games and applications developed by Firelight Technologies.
+
+<b>Loading and playing.<b>
+To play the sounds you must load them first
+Here is an example of opening an mp3 file to be streamed. System::createStream will open the file, and pre-buffer a small amount of data so that it will be able to play instantly when System::playSound is called.
+to compile use the following command: "g++ -Wall  *name file**  -o *give name executable* -lwiringPi -I/usr/local/include -L/usr/local/lib -lfmod -pthread"
 
 # Servomotor
-- the servo motor is used for an up and down motion. it makes it  possible to move the waterhose up and down. The lib We need is pigpio. with this library it is easy to make the servo due PWM.
-first we have to decleare the gpio pin as an output pin. After that we have to set an freq for the servo 50 herts is the common freq for the servo to work. We have 2 function for the servo clockwise and anticlockwise
+- the servo motor is used for an up and down motion. it makes it  possible to move the waterhose up and down. The lib We need is pigpio. With this library it is easy to make the servo due PWM.
+first we have to decleare the gpio pin as an output pin. After that we have to set an freq for the servo 50 herts is the common freq for the servo to work. We have 2 function for the servo clockwise and anticlockwise with these function we can send an pulse to the servo to move them clockwise or anticlockwise. In these function we keep a record of how many times a function is executed so we can keep record which level the servo is beacuse it can only move the servo 2 times up and 2 times down from a 90 degree so totaly the servo has 4 levels because the thread we are using has an breakpoint of 90 degree.
 
 To compile use the following commanD: "g++ -Wall -pthread -o *name file* *name executable* -lpigpio -lrt"
 
