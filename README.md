@@ -79,7 +79,7 @@ This code is intended to get a directional orientation(compass) for the rover.
 To be actually able to use code from the shared library, we use a standard python library called ‘ctypes’.  It provides C compatible data types, and allows calling functions in DLLs or shared libraries. It can be used to wrap these libraries in pure Python.  From this library we use the class ‘cdll’. This class contains a function called LoadLibrary which does all the work for us and loads a shared library and returns it. 
 The server gets messages from the client (app) and uses those messages accordingly to execute a specific function of the rover. <br><br>The ‘keybindings’ are as following: <br>
 **b** = turn on the siren <br>
-**v** = turn off the sirensiren off <br>
+**v** = turn off the sirensiren<br>
 **w** = drive forewards <br>
 **s** = drive backwards  <br>
 **d** = turn left <br>
