@@ -30,7 +30,7 @@ Enter the command sudo raspi-config on your raspberryPi and go to interface opti
 
 For the use of this code the following external libraries are needed on the raspberryPi:
 - **WiringPi**<br>
-     sudo apt-get install wiringPi <br>
+     http://wiringpi.com/ <br>
 - **OpenCV**<br>
     https://solarianprogrammer.com/2019/09/17/install-opencv-raspberry-pi-raspbian-cpp-python-development/
 - **Pigpio** <br>   https://abyz.me.uk/rpi/pigpio/download.html
@@ -78,15 +78,15 @@ This code is intended to get a directional orientation(compass) for the rover.
 •	The server can be ran by running ‘python Server.py’ in the command line on the raspberry pi. In Server.py you will find several classes which implement the use of the code written in C/C++ for the sensor/actuators. For example there is a class called Ultrasonic. This class has a function which returns the distance between the rover and the ultrasonic sensor. That function calls another function from a shared library compiled from C/C++ which does the actual executing and calculating.  <br><br>
 To be actually able to use code from the shared library, we use a standard python library called ‘ctypes’.  It provides C compatible data types, and allows calling functions in DLLs or shared libraries. It can be used to wrap these libraries in pure Python.  From this library we use the class ‘cdll’. This class contains a function called LoadLibrary which does all the work for us and loads a shared library and returns it. 
 The server gets messages from the client (app) and uses those messages accordingly to execute a specific function of the rover. <br><br>The ‘keybindings’ are as following: <br>
-**b** = siren on <br>
-**v** = siren off <br>
-**w** = voren rijden <br>
-**s** = achter rijden  <br>
-**d** = links rijden <br>
-**a** = rechts rijden<br>
-**q** = stop met rijden na loslaten van w, a, s, d<br>
-**o** = servo (o)mhoog<br>
-**l** = servo om(l)aag <br>
+**b** = turn on the siren <br>
+**v** = turn off the siren<br>
+**w** = drive forewards <br>
+**s** = drive backwards  <br>
+**d** = turn left <br>
+**a** = turn right<br>
+**q** = stop driving<br>
+**o** = raise servo(hose)<br>
+**l** = lower servo(hose) <br>
 **z** = shoot pump<br>
 **x** = stop shooting pump<br>
 
