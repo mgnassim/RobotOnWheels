@@ -56,15 +56,15 @@ class WheelEncoder(object):
     def returnSpeed(self):
         return libWheelEncoder.WheelEncoder_readSpeed(self.obj)
 
-# class WaterSensor(object):
+class WaterSensor(object):
 
-#      # constructor
-#     def __init__(self):
-#         # attribute
-#         self.obj = libWaterSensor.WaterSensor_new()
+     # constructor
+    def __init__(self):
+        # attribute
+        self.obj = libWaterSensor.WaterSensor_new()
 
-#     def getMoistureValue(self):
-#         return libWaterSensor.WaterSensor_returnMoistureValue(self.obj)
+    def getMoistureValue(self):
+        return libWaterSensor.WaterSensor_returnMoistureValue(self.obj)
 
 class Compass(object):
 
