@@ -135,7 +135,7 @@ void MPU::waitDataReady()
     }
     else
     {
-        usleep(500);
+        usleep(5000000);
         waitDataReady();
     }
 }
