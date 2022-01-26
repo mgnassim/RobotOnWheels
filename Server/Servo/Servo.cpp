@@ -1,3 +1,8 @@
+/***
+ * Author: Bilal_Malik
+ * Code for servo
+ ***/
+
 #include <pigpio.h>
 #include <iostream>
 #include <wiringPi.h>
