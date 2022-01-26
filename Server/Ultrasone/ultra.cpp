@@ -1,12 +1,13 @@
-#include <wiringPi.h>
-#include <wiringPiI2C.h>
-#include <unistd.h>
-
 /***
  * Author: Bilal_Malik
  * Code for SRF02 ultrasonic sensor
  *The SRF02 does not require any user calibration
  ***/
+
+#include <wiringPi.h>
+#include <wiringPiI2C.h>
+#include <unistd.h>
+
 
      /* SRF02 registers */
 // MPU I2C address
