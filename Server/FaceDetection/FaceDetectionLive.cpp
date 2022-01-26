@@ -26,7 +26,7 @@ public:
         if (!video.isOpened()) cout << "Vid is not opened!\n";
 
         // Create video writer object
-        cv::VideoWriter output("LiveDetectionPi.avi", cv::VideoWriter::fourcc('M', 'J', 'P', 'G'),  3, cv::Size(frameWidth, frameHeight));
+        cv::VideoWriter output("LiveDetectionPi.avi", cv::VideoWriter::fourcc('M', 'J', 'P', 'G'),  fps, cv::Size(frameWidth, frameHeight));
 
         while (video.read(frame)) {
 
