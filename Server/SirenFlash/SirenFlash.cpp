@@ -1,59 +1,95 @@
-#include <iostream>   //needed for
+/***
+ * Author: Bilal_Malik
+ * Code for siren 
+ ***/
+
+
+
+#include <iostream>   //needed for inpot ouput
 #include <wiringPi.h> // needed for usage Rpi
 #include <fmod.h>     // needed for fmod
 #include <cstddef>    // needed for null
 #include <fmod.hpp>   // needed for fmod
-#include <stdio.h>    // needed for printf
-#include <thread>     // needed for threading
 #include <unistd.h>   // needed functions
-#include <conio.h>    // needed for getch
-#include <string>
-using namespace std;
+
+
 
 class Siren
 {
 
-    FMOD::System *system; //null pointers
-    FMOD::Sound *sound;   //Address of a variable to receive a newly created FMOD::Sound object.
-    FMOD::Channel *channel;
+    FMOD::System *system; // pointer to store Address of a variable of newly created FMOD::System object.
+    FMOD::Sound *sound;   //pointer to store Address of a variable of newly created FMOD::Sound object.
+    FMOD::Channel *channel; //pointer to store Address of a variable of newly created FMOD::Channel object.
+    
+    //var
+    const int PIN_BLUE = 29; // declared GPIOpin for led
+    bool playing = true; // Bool for flashing LED while siren is on
+    const int MAX_CH = 1; // The maximum number of channels to be used in FMOD.
+    int FMOD_VOL = 5; // Value for volume between low-high 1-10
+    int ON =1; //High
+    int OFF =0; //LOW
+
+    /* FMOD param */
+    // MAX_CH 1 /* The maximum number of channels to be used in FMOD.*/ 
+    //fmod_flag      /* This can be a selection of flags to change the behaviour of FMOD at initialization time.*/
+    //OPPT           /* Optional. Specify 0 or NULL to ignore*
 
 public:
-    const int pinBlue = 29; // declared GPIOpin for led
-    bool playing = true;
 
+    /***
+ * initalise and set default values
+ * Check for errors
+***/
     Siren()
     {
-        wiringPiSetup();
-        FMOD::System_Create(&system);         // Create the main system object.
-        system->init(5, FMOD_INIT_NORMAL, 0); // Initialize FMOD.
-        system->createStream("/home/pi/app_control/SirenFlash/s.mp3", FMOD_DEFAULT, 0, &sound);
+        wiringPiSetup(); //for GPIO
+        FMOD::System_Create(&system); // Create the main system object.
+        system->init(MAX_CH, FMOD_INIT_NORMAL, NULL); // Initialize FMOD : (max_ch,fmod_flag,OPPT)
+        
+        //param: (file,fmod_flag,OPPT,Address of a variable for storage object)
+        system->createStream("/home/pi/app_control/SirenFlash/s.mp3", FMOD_DEFAULT, NULL, &sound); 
+        //open and load  the file, and pre-buffer a small amount of data so that it will be able to play
+
     }
+
+
+    /***
+ * play audio
+***/
 
     void play()
     {
-        playing = true;
-        system->playSound(sound, NULL, true, &channel);
-        channel->setVolume(3);
+        playing = true;//set bool true
+
+        system->playSound(sound, NULL, true, &channel); //param: (*sound,OPPT,paused,addres channel)
+        channel->setVolume(FMOD_VOL);
         channel->setPaused(false);
     }
 
+    /***
+ * Flash led on of on the beat while playing audio
+***/
+
     void flash()
     {
+        pinMode(pinBlue, OUTPUT); // Configure GPIO0 as an output
         while (playing)
         {
-            pinMode(pinBlue, OUTPUT); // Configure GPIO0 as an output
-
-            digitalWrite(pinBlue, 1);
-            delay(750); // Delay 500ms
-            digitalWrite(pinBlue, 0);
-            delay(600); // Delay 500ms
+            digitalWrite(PIN_BLUE, ON); //turn on
+            delay(750); // Delay 750ms 
+            digitalWrite(PIN_BLUE, OFF); // turn of
+            delay(600); // Delay 600ms 
         }
     }
 
+
+    /***
+ * turn audio and led of
+***/
     void off()
     {
         playing = false;
-        digitalWrite(pinBlue, 0);
+        digitalWrite(PIN_BLUE, OFF);
         channel->setPaused(true);
     }
 };
