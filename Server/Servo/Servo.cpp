@@ -10,12 +10,13 @@ class Servo
 
 public:
     int servoPin = 17;     //pin
-    int pwmFrequency = 50; // hertz default
+    int pwmFrequency = 50; // hertz default p=20 ms
+    //PWM range by default 255(8b) dutycycle 100% dutycycle always on
 
-    // servo werkbereik
-    int clockwise = 2500;    //most clockwise
-    int antiClockwise = 500; //most anticlockwise
-    int off = 0;   //low is of
+    // servo werkbereik 
+    int clockwise = 2500;    //pulse width 2.5ms to move most clockwise
+    int antiClockwise = 500; //pulse width 0.5ms to move most anticlockwise
+    int off = 0;   //pulse width 0 is of
 
     // index
     int level = 0; //val for storing
@@ -30,7 +31,6 @@ public:
     {
         //set pin and freq
         gpioSetPWMfrequency(servoPin, pwmFrequency);
-        //gpioSetPWMrange(servoPin, pwmFrequency);
         //initialise GPIO
         gpioInitialise();
         if (gpioInitialise() < 0)
