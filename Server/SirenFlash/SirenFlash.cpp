@@ -1,6 +1,7 @@
 /***
  * Author: Bilal_Malik
  * Code for siren 
+ *To play audio we need the FMOD lib to make it possible. FMOD is a proprietary sound effects engine and authoring tool for video games and applications developed by Firelight Technologies.
  ***/
 
 
