@@ -35,25 +35,22 @@ void MPU::mpuInit()
 
     // Start the device and save it
     fd = wiringPiI2CSetup(SENS_ADDR);
+
     // wake up device
-    // Clear sleep mode bit (6), enable all sensors
     wiringPiI2CWriteReg8(fd, PWR_MGMT_1, 0x00);
     usleep(1000);
 
-    // get stable time source
     // Set clock source to be PLL with x-axis gyroscope reference, bits 2:0 = 001
     wiringPiI2CWriteReg8(fd, PWR_MGMT_1, 0x01);
     usleep(1000);
 
     // Configure Gyro and Accelerometer
     // Disable FSYNC and set accelerometer and gyro bandwidth to 44 and 42 Hz, respectively;
-    // DLPF_CFG = bits 2:0 = 010; this sets the sample rate at 1 kHz for both
-    // Maximum delay is 4.9 ms which is just over a 200 Hz maximum rate
     wiringPiI2CWriteReg8(fd, CONFIG, 0x03);
     usleep(1000);
 
     // Set sample rate = gyroscope output rate/(1 + SMPLRT_DIV)
-    // Use a 200 Hz rate; the same rate set in CONFIG above
+    // Use a 200 Hz rate;
     wiringPiI2CWriteReg8(fd, SMPLRT_DIV, 0x04);
     usleep(1000);
 
@@ -77,7 +74,7 @@ void MPU::mpuInit()
     sleep(1);
 
     // Start continuous measurement mode 8Hz (set to 0x6 for 100Hz)
-    wiringPiI2CWriteReg8(comp, 0x0a, 0x16);
+    wiringPiI2CWriteReg8(comp, COMP_CONTROL, 0x16);
 
     OUT("MPU init completed");
 }
