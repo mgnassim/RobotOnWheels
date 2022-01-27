@@ -130,8 +130,10 @@ Once the rover is turned on, the only thing that is left to do is by connecting 
 To enable the camera used on the raspberry pi, you have to click the CAMERA button on the app to enable an UDP connection from which a camerafeed is sent from the server to the app. Now you can see a live view of the rover! Time to extinguish some fire 🔥🚒!
 
 ## Hardware schematic
-<img src="https://gitlab.fdmci.hva.nl/balalib/project-row/-/raw/main/img/schema.png" width="500"><br>
-<img src="https://gitlab.fdmci.hva.nl/balalib/project-row/-/raw/main/img/tabel.png" width="300"><br>
+### Fritzing hardware layout
+<img src="https://imgur.com/u8VWYlO" width="500"><br>
+### Pin layout
+<img src="https://imgur.com/tjWpVW7" width="300"><br>
 
 ## Contact information
 Joris Brouwer: joris.brouwer2@hva.nl<br>
