@@ -210,6 +210,7 @@ def server():
             Thread(target=sirenFlash.playSiren).start()
             Thread(target=sirenFlash.playFlash).start()
 
+# needing a connection with the app before we can start controlling the car remotely
 listensocket.bind(('', Port))
 
 listensocket.listen(maxConnections)
