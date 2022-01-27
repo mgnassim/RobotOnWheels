@@ -131,9 +131,9 @@ To enable the camera used on the raspberry pi, you have to click the CAMERA butt
 
 ## Hardware schematic
 ### Fritzing hardware layout
-<img src="https://imgur.com/u8VWYlO" width="500"><br>
+<img src="https://i.imgur.com/u8VWYlO.png" width="500"><br>
 ### Pin layout
-<img src="https://imgur.com/tjWpVW7" width="300"><br>
+<img src="https://i.imgur.com/tjWpVW7.png" width="300"><br>
 
 ## Contact information
 Joris Brouwer: joris.brouwer2@hva.nl<br>
