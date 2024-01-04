@@ -1,6 +1,5 @@
 /***
- * Author: Bilal_Malik
- * Code for servo
+    * Code for servo
  ***/
 
 #include <pigpio.h>
